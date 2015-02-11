@@ -1,19 +1,15 @@
-<div class="container">
-  <div class="row">
-    <h1 class="text-center blog_name"><a href="/">Codelion 맛집 평가</a></h1>
-  </div>
-</div>
-
 <div class="container-fluid">
   <div class="row">
     <div class="navbar navbar-default" id="bs-example-navbar-collapse-1">
       <div class="container">
         <ul class="nav navbar-nav pull-left">
-          <li class="text-left"><a href="/korean" class="nav_list">한식</a></li>
-          <li><a href="/chinese" class="nav_list">중식</a></li>
-          <li><a href="/japanese" class="nav_list">일식</a></li>
-          <li><a href="/western" class="nav_list">양식</a></li>
-          <li><a href="/foods/write" class="nav_list">맛집 추가하기</a></li>
+          <li class="text-left"><a href="/" class="nav_list">홈</a><li>
+					<li><a href="/study" class="nav_list">학문</a></li>
+          <li><a href="/hobby" class="nav_list">취미</a></li>
+          <li><a href="/venture" class="nav_list">벤쳐</a></li>
+          <li><a href="/shopping" class="nav_list">쇼핑</a></li>
+					<li><a href="/life" class="nav_list">생활</a></li>
+          <li><a href="/foods/write" class="nav_list">게시물 추가</a></li>
         </ul>
         <% if session[:user_id].nil? %>
         <ul class="nav navbar-nav pull-right">

@@ -1,18 +1,149 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-4 col-md-offset-4">
-			<h3 class="text-center">맛집 추가하기</h3>
+		<div class="col-md-8 col-md-push-9"style="position:absolute;">
+			<div class="well" style="width:300px;">
+				 <% @posts.each do |posting| %>
+       	 	<h4>제목: <%= posting.title %></h4>
+         		<!--<p><img src="<%= posting.image_url(:medium) %>"width="50px"height="50px" ></p>--!>
+         		<h4><span>분류:</span><%= posting.category %></h4>
+         		<h4><span>세부사항:</span><%= posting.detail_category %></h4>
+        		<h4><span>시간:</span><%= posting.time.strftime('%Y/%m/%d %I:%M %p') %></h4>
+        		<h4><span>내용:</span><%= posting.content %></h4>
+						<br>
+				<%end%>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<h3 class="text-center">게시물 추가하기</h3>
 				<p><%= flash[:alert] %></p>
 
 			<form action="/foods/write_complete" class="form-signin" method="post" enctype="multipart/form-data">
 				<p class="text-center"><span class="glyphicon glyphicon-plus">분류</span>
-				<select name="post_category">
-					<option value="한식">한식</option>
-					<option value="일식">일식</option>
-					<option value="중식">중식</option>
-					<option value="양식">양식</option>
+				<select name="category" onchange="categorySelectHandler(this)" id="category" >
+					<option value="학문">학문</option>
+					<option value="취미">취미</option>
+					<option value="벤쳐">벤쳐</option>
+					<option value="쇼핑">쇼핑</option>
+					<option value="생활">생활</option>
 				</select></p>
-				<p class="text-center"><input class="form-control input_user" placeholder="제목" type="text" name="post_title" placeholder="제목을 입력하세요."></p>
+				<div class="row">
+					<p class="col-xs-6"style="width: 45%;text-align: right"><span class="glyphicon glyphicon-plus">세부사항</span></p>
+				<select id= "study" name="detail_category">
+					<option value="비즈니스">비즈니스</option>
+          <option value="마케팅">마케팅</option>
+          <option value="인사">인사</option>
+	        <option value="경제">경제</option>
+          <option value="무역">무역</option>
+					<option value="신문방송">신문방송</option>
+					<option value="농경">농경</option>
+					<option value="영어">영어</option>
+				</select>
+				<select id= "hobby" name = detail_category">
+					<option value="영화">영화</option>
+					<option value="연극">연극</option>
+					<option value="뮤지컬">뮤지컬</option>
+					<option value="독서">독서</option>
+					<option value="운동">운동</option>
+					<option value="요리">요리</option>
+				</select>
+				<select id= "venture" name ="deatail_category">
+					<option value="ICT">ICT</option>
+					<option value="IOT">IOT</option>
+				</select>
+				<select id= "shopping" name="detail_category">	
+					<option value="신상품">신상품</option>
+					<option value="할인행사">할인행사</option>
+				</select>
+				<select id= "life" name="detail_category">
+					<option value="맛집">맛집</option>
+					<option value="여행">여행</option>
+        </select>
+				</div>
+					<script>
+						$(document).ready(function(){
+								var study = document.getElementById('study');
+                study.style.display = 'block';
+                var hobby = document.getElementById('hobby');
+                hobby.style.display = 'none';
+                var venture = document.getElementById('venture');
+                venture.style.display = 'none';
+                var shopping = document.getElementById('shopping');
+                shopping.style.display = 'none';
+                var life = document.getElementById('life');
+                life.style.display = 'none';
+						});
+						function categorySelectHandler(select){
+							var x = select.value;
+							if( x === "학문"){
+								var study = document.getElementById('study');
+								study.style.display = 'block';
+								var hobby = document.getElementById('hobby');
+								hobby.style.display = 'none';
+								var venture = document.getElementById('venture');
+								venture.style.display = 'none';
+								var shopping = document.getElementById('shopping');
+								shopping.style.display = 'none';
+								var life = document.getElementById('life');
+								life.style.display = 'none';
+							}else if( x === "취미"){
+								 var study = document.getElementById('study');
+                 study.style.display = 'none';
+                 var hobby = document.getElementById('hobby');
+                 hobby.style.display = 'block';
+                 var venture = document.getElementById('venture');
+                 venture.style.display = 'none';
+                 var shopping = document.getElementById('shopping');
+                 shopping.style.display = 'none';
+                 var life = document.getElementById('life');
+                 life.style.display = 'none';
+
+							}else if( x === "벤쳐"){
+								 var study = document.getElementById('study');
+                 study.style.display = 'none';
+                 var hobby = document.getElementById('hobby');
+                 hobby.style.display = 'none';
+                 var venture = document.getElementById('venture');
+                 venture.style.display = 'block';
+                 var shopping = document.getElementById('shopping');
+                 shopping.style.display = 'none';
+                 var life = document.getElementById('life');
+                 life.style.display = 'none';
+
+							}else if( x === "쇼핑"){
+ 	               var study = document.getElementById('study');
+                 study.style.display = 'none';
+                 var hobby = document.getElementById('hobby');
+                 hobby.style.display = 'none';
+                 var venture = document.getElementById('venture');
+                 venture.style.display = 'none';
+                 var shopping = document.getElementById('shopping');
+                 shopping.style.display = 'block';
+                 var life = document.getElementById('life');
+                 life.style.display = 'none';
+							}else{
+								  var study = document.getElementById('study');
+                  study.style.display = 'none';
+                  var hobby = document.getElementById('hobby');
+                  hobby.style.display = 'none';
+                  var venture = document.getElementById('venture');
+                  venture.style.display = 'none';
+                  var shopping = document.getElementById('shopping');
+                  shopping.style.display = 'none';
+                  var life = document.getElementById('life');
+                  life.style.display = 'block';
+							}
+						}
+					</script>
+				<div class="input-append date form_datetime;">
+    			<p class="col-xs-6"style="width: 45%;text-align: right"><span class="glyphicon glyphicon-plus">시간/날짜</span></p>
+					<input size="16" id="search_time" name="time">
+				</div>
+ 					<script>
+             $('#search_time').datetimepicker();
+          </script>
+
+			<p class="text-center"><input class="form-control input_user" placeholder="제목" type="text" name="post_title" placeholder="제목을 입력하세요."></p>
 				<p class="text-center"><textarea class="form-control input_textarea" placeholder="내용" name="post_content" placeholder="내용을 입력하세요."></textarea></p>
 				<p class="text-center"><span class="glyphicon glyphicon-plus">사진업로드</span></p><p class="text-left"><input type="file" name="image"></p>
 				<input class="btn btn-lg btn-block submit_user" type="submit" value="추가하기">

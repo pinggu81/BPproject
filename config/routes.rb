@@ -14,7 +14,8 @@ Gourmet::Application.routes.draw do
   get "foods/delete_complete/:id" => 'foods#delete_complete'
   post "foods/write_comment_complete"
   get "foods/delete_comment_complete/:id" => 'foods#delete_comment_complete'
-  # The priority is based upon order of creation: first created -> highest priority.
+ 	post "foods/search"
+	 # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"

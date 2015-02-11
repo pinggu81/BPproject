@@ -1,20 +1,17 @@
 <div class="container">
   <div class="row">
     <p><%= flash[:alert] %></p>
-    <h2 class="text-center">맛집 정보 보기</h2>
-    <div class="col-md-6">
-			<p><img src="<%= @post.image_url(:medium) %>"></p>
-    </div> 
-    <div class="col-md-6">
-      <h4><span class="glyphicon glyphicon-plus">제목:</span><%= @post.title %></h4>
+    <h2 class="text-center">제목: <%= @post.title %></h2>
+		<br>
+    <div class="col-md-6" style="margin-left: 470px;">
+			<p><img src="<%= @post.image_url(:medium) %>"width="200px"height="200px" ></p>
       <h4><span class="glyphicon glyphicon-plus">분류:</span><%= @post.category %></h4>
+			<h4><span class="glyphicon glyphicon-plus">세부사항:</span><%= @post.detail_category %></h4>
+			<h4><span class="glyphicon glyphicon-plus">시간:</span><%= @post.time.strftime('%Y/%m/%d %I:%M %p') %></h4>
       <h4><span class="glyphicon glyphicon-plus">내용:</span><%= @post.content %></h4>
       <p><a class="submit_user" href="/foods/edit/<%= @post.id %>">수정</a> | <a class="submit_user" href="/foods/delete_complete/<%= @post.id %>">삭제</a></p>
-				<% @post.comments.each do |comment| %>
-				<p><strong><%= comment.user.username %></strong> <%= comment.content %> | <a href="/foods/delete_comment_complete/<%= comment.id %>">삭제</a></p>
-				<% end %>
-    </div>    
-  </div>
+		</div>
+	</div>
 
   <br>
 
@@ -24,17 +21,23 @@
 				<input type="hidden" class="form-control" name="post_id" value="<%= @post.id %>">
 				<% if !@comment_writer.nil? %>
 					<label for="inputEmail3" class="col-sm-1  col-sm-offset-1 control-label"<strong><h4><%= @comment_writer.username %></h4></strong></label>
-				<div class="col-sm-8">
-					<input type="text" class="form-control input_user" name="comment_content" placeholder="댓글 내용을 입력하세요."> 
-				</div>
-				<div class="col-sm-2">
-					<input type="submit" class="form-control submit_user" value="달기">
-				</div>
-
-			<% end %>
+					<div class="col-sm-8">
+						<input type="text" class="form-control input_user" name="comment_content" placeholder="댓글 내용을 입력하세요."> 
+					</div>
+					<div class="col-sm-2">
+						<input type="submit" class="form-control submit_user" value="달기">
+					</div>
 			</div>
 		</form>
-
-    <p class="text-center"><a class="show_list" href="/">전체 리스트 가기</a></p>    
-  </div>
+	</div>
+					<% @post.comments.each do |comment| %>
+					<br>
+					<div class="col-md-6" style="margin-left: 80px;">
+						<h5><strong><%= comment.user.username %></strong>: <%= comment.content %>
+					</div>
+					<div style="margine-right: 0px;">
+					<a href="/foods/delete_comment_complete/<%= comment.id %>" height="2">삭제</a></h5>
+        	</div>
+					<% end %>
+				<% end %>
 </div>

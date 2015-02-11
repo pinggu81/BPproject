@@ -3,19 +3,27 @@ class FoodsController < ApplicationController
   skip_before_action  :login_check, :only => [:posts, :posts_category, :show]
 
   def posts
-    @posts = Post.all
+    @posts = Post.find(:all,:order => "time DESC",:limit => 10)
   end
+	
+	def search
+		@time = params[:time]
+		@category = params[:category]
+	  @posts = Post.find(:all,:order => "time DESC",:limit => 100)
+	end
 
   def posts_category
     case params[:category]
-    when "korean"
-      @category = "한식"
-    when "japanese"
-      @category = "일식"
-    when "chinese"
-      @category = "중식"
-    else
-      @category = "양식"
+    when "study"
+      @category = "학문"
+    when "hobby"
+      @category = "취미"
+    when "venture"
+      @category = "벤쳐"
+    when "shopping"
+      @category = "쇼핑"
+		else
+			@category = "생활"
     end
 		@posts = Post.where(category: @category)
   end
@@ -26,17 +34,20 @@ class FoodsController < ApplicationController
   end
 
   def write
+		@posts = Post.all
   end
 
   def write_complete
     post = Post.new
     post.user_id = session[:user_id]
-    post.category = params[:post_category]
-    post.title = params[:post_title]
+    post.category = params[:category]
+    post.detail_category = params[:detail_category]
+		post.time = params[:time]
+		post.title = params[:post_title]
     post.content = params[:post_content]
     post.image = params[:image]
     if post.save
-      flash[:alert] = "저장되었습니다."
+			flash[:alert] = "저장되었습니다."
       redirect_to "/foods/show/#{post.id}"
     else
       flash[:alert] = post.errors.values.flatten.join(' ')
@@ -45,6 +56,7 @@ class FoodsController < ApplicationController
   end
 
   def edit
+		@posts = Post.find(:all,:order => "time DESC",:limit => 10)
     @post = Post.find(params[:id])
     if @post.user_id != session[:user_id]
       flash[:alert] = "수정 권한이 없습니다."
@@ -54,7 +66,9 @@ class FoodsController < ApplicationController
 
   def edit_complete
     post = Post.find(params[:id])
-    post.category = params[:post_category]
+    post.category = params[:category]
+		post.detail_category = params[:detail_category]
+		post.time = params[:time]
     post.title = params[:post_title]
     post.content = params[:post_content]
     if post.save

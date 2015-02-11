@@ -27,6 +27,8 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.2)
     atomic (1.1.14)
+    bootstrap3-datetimepicker-rails (4.0.0)
+      momentjs-rails (>= 2.8.1)
     builder (3.1.4)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
@@ -59,6 +61,8 @@ GEM
     mini_magick (3.7.0)
       subexec (~> 0.2.1)
     minitest (4.7.5)
+    momentjs-rails (2.9.0)
+      railties (>= 3.1)
     multi_json (1.8.4)
     polyglot (0.3.4)
     rack (1.5.2)
@@ -121,11 +125,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap3-datetimepicker-rails (~> 4.0.0)
   carrierwave
   coffee-rails (~> 4.0.0)
   jbuilder (~> 1.2)
   jquery-rails
   mini_magick
+  momentjs-rails (>= 2.8.1)
   rails (= 4.0.1)
   sass-rails (~> 4.0.0)
   sdoc

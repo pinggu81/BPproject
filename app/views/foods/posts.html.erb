@@ -1,12 +1,40 @@
 <div class="container">
+	 <div class="col-md-8 col-md-push-9"style="position:absolute;">
+         <div style="width:300px;background-color: #b0c4de;">
+        	<h4>ID ABC님이 2월 14일 17::00</h4>
+					<h4>[뮤지컬] 지킬엔 하이드를 달력으로 공유했습니다.</h4>
+					<br>
+					<h4>ID 홍길동 님이 2월 14일 19:00</h4>
+					<h4>[학문] 2015 국제 비즈니스 포럼 정보를 신규 등록했습니다.</h4>
+					<br>
+					<h4>ID 김영희 님이 2월 14일 19:30</h4>
+					<h4>[취미] Daily Cooking class를 관심분야로 등록했습니다.</h4>
+				</div>
+      </div>
 	<div class="row">
 		<%= flash[:alert] %>
-
 	<div class="well">
-		<h3 class="text-center">Codelion의 맛집 평가 사이트에 오신 여러분들을 환영합니다.</h3>
-		<p class="text-center">최상의 맛집들을 모았습니다.</p>
+		<h3 class="text-center">Beautiful Times</h3>
+		<p class="text-center">The times never comes again</p>
+		<form action="/foods/search" class="form-inline" method="post">
+        <div class="form-group" style ="margin-left: 300px;">
+          <br> 
+					<input size="25"class="form-control" id="search_time"name="time" placeholder="날짜/시간을 선택해주세요">
+            <script>
+              $('#search_time').datetimepicker();
+            </script>
+        </div>
+        <div class="form-group">
+          <br>
+          <label class="sr-only" for="exampleInputEmail2">Email address</label>
+       &nbsp;<input size="30" type="text" class="form-control" name ="category" placeholder="어떤 시간정보를 찾으시나요?">
+        </div>
+        <div class="form-group">
+          <br>
+          &nbsp;<button type="submit"  id ="search" class="btn btn-default">검색</button>
+        </div>
+    </form>
 	</div>
-
 	<%= render :partial => "foods/posts" %>
 	</div>
 </div>
